@@ -23,7 +23,6 @@ def genData(data):
 	return newd
 
 def modPix(pix, data): 
-	
 	datalist = genData(data) 
 	lendata = len(datalist) 
 	imdata = iter(pix) 
