@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">
+<style>
+    #jumbo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 950px;
+        text-align: center;
+        background: none;
+    }
+
+    #jumbo h1 {
+        font-size: 60px;
+        font-family: 'PT Serif', serif;
+        color: white;
+    }
+
+    #jumbo p {
+        color: white;
+        font-size: 18px;
+        font-family: 'Belgrano', serif;
+    }
+
+    .btn-primary {
+        margin-right: 30px;
+    }
+
+    .btn {
+        width: 200px;
+        border-radius: 10px;
+        height: 60px;
+        border: none;
+        font-family: 'Roboto', sans-serif;
+        font-size: 22px;
+        transition: all 0.4s ease 0s;
+        box-shadow: 0px 7px 20px rgba(255, 255, 255, 0.3);
+    }
+
+    #butt1 {
+        background-color: white;
+        color: #1B1F3B;
+    }
+
+    #butt2 {
+        background-color: #1B1F3B;
+        color: white;
+    }
+
+    #butt1:hover,
+    #butt2:hover {
+        background-color: #DB1F1F;
+        box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+        color: #fff;
+        transform: translateY(-7px);
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron" id="jumbo">
+    <div class="col-sm-8 mx-auto">
+        <h1>Send the message,<br>safe and sound.</h1>
+        <br>
+        <p>Avoid any third party accessing your information by encoding your message in an image.</p><br><br>
+        <p>
+            <button type="button" class="btn btn-primary btn-lg" id="butt1">Encryption</button>
+            <script type="text/javascript">
+                document.getElementById("butt1").onclick = function () {
+                    location.href = "/encryption";
+                };
+            </script>
+            <button type="button" class="btn btn-secondary btn-lg" id="butt2">Decryption</button>
+            <script type="text/javascript">
+                document.getElementById("butt2").onclick = function () {
+                    location.href = "/decryption";
+                };
+            </script>
+
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+    .jumbotron label{
+        font-size: 17px;
+        font-weight: bold;
+    }
+    .jumbotron button {
+        width: 180px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        font-size: 20px;
+        border-radius: 8px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <div class="col-sm-8 mx-auto">
+        
+        {% if dec_msg %}
+        <h1 class="display-4">Done!!</h1><br>
+        <div class="alert alert-success" role="alert">
+            The message was successfully decrypted.
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="EncryptedMessage">Decrypted Message:-</label>
+                <input type="text" class="form-control" value="{{dec_msg}}">
+            </div>
+        </form>
+        {% else %}
+        <h1 class="display-4">Fail!!</h1><br>
+        <div class="alert alert-danger" role="alert">
+            The process could not be completed. Check the information once again.
+        </div>
+
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

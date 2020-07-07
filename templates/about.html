@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rosario&display=swap" rel="stylesheet">
+<style>
+    .jumbotron {
+        color: white;
+        background: none;
+        width: 1000px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -6%);
+        text-align: center;
+    }
+    .jumbotron h1 {
+        text-align: center;
+        font-family: 'PT Serif', serif;
+    }
+    .jumbotron p{
+        font-family: 'Rosario', sans-serif;
+        font-size: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <div class="col-sm-8 mx-auto">
+        <h1 class="display-4">About</h1><br><br>
+        <p><span id="p1" style="padding-left: 2em;">We</span> offer protection to your valuable information to avoid any third party users to access your information.
+            We use algorithms to secure your information into an image of your choice. 
+        </p>
+        <p><span id="p2" style="padding-left: 2em;">We</span> encrypt the message using a key of your choice or the default key.
+            We encode the encrypted text into the image using steganography techniques. The encoded image can be downloaded and sent to the recipient.
+            The recipient can extract the message from the image by inserting the key.</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+    .jumbotron label {
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .jumbotron button {
+        width: 180px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        font-size: 20px;
+        border-radius: 8px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <div class="col-sm-8 mx-auto">
+        {% if msg  and image_name %}
+        <h1 class="display-4">Done!!</h1><br>
+        <div class="alert alert-success" role="alert">
+            The message was successfully encrypted and encoded in the message. You can download the image below.
+        </div>
+        {% else %}
+        <h1 class="display-4">Fail!!</h1><br>
+        <div class="alert alert-danger" role="alert">
+            The process could not be completed. Please check the information once again and try.
+        </div>
+        {% endif %}
+        <form>
+            <div class="form-group">
+                <label for="EncryptedMessage">Entered Message:-</label>
+                <input type="text" class="form-control" value="{{msg}}">
+            </div>
+            <div class="form-group">
+                <label for="Key">Encrypted Message:-</label>
+                <input type="text" class="form-control" value="{{key}}">
+            </div>
+        </form>
+        <br>
+        {% if image_name %}
+        <label for="Download image">Download the encoded image:-</label>
+        <small id="ImageInfo" class="form-text text-muted">Download the modified below using the download button. Send the 
+            image to the recipient and remember to tell them the key if you have used a custom key.
+        </small><br>
+        <a href="{{ url_for('static', filename = image_name) }}" download>
+            <button type="button" class="btn btn-info">Download</button>
+        </a>
+        {% endif %}
+        <br><br>
+    </div>
+</div>
+{% endblock %}

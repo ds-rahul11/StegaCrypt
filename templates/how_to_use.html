@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rosario&display=swap" rel="stylesheet">
+<style>
+    .jumbotron {
+        color: white;
+        background: none;
+        width: 1000px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -6%);
+        text-align: center;
+    }
+    .jumbotron h1 {
+        text-align: center;
+        font-family: 'PT Serif', serif;
+    }
+    .jumbotron p{
+        font-family: 'Rosario', sans-serif;
+        font-size: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <div class="col-sm-8 mx-auto">
+        <h1 class="display-4">How to use</h1><br><br>
+        <p><span id="p1" style="padding-left: 2em;">You</span> can choose an image of your choice to encode the message and upload it.
+            You have an option of using the default key or using a custom key to encrypt the message. If you have used 
+            a custom key, then remember to notify the recipient of the key. Text can be decrypted only if the recipient enters the custom key.
+
+        </p>
+        <p><span id="p2" style="padding-left: 2em;">While</span> using a custom key, it is better to use a key of more than 10 unique characters
+            as it helps in creating a more secure encrypted text. After encoding, the image will be available to download 
+            only in the ".png" format as it uses a loseless data compression algorithm because of which all the data will be 
+            intact within the image. </p>
+    </div>
+</div>
+{% endblock %}

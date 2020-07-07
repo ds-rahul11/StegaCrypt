@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap" rel="stylesheet">
+<style>
+    body {
+        color: white;
+    }
+
+    .jumbotron {
+        color: black;
+        width: 850px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .jumbotron h1 {
+        text-align: center;
+        font-family: 'PT Serif', serif;
+    }
+
+    .btn {
+        width: 180px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        font-size: 20px;
+        border-radius: 8px;
+    }
+
+    .jumbotron label {
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .form-check label {
+        font-size: 15px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <div class="col-sm-8 mx-auto">
+        <h1 class="display-4">Decryption</h1><br>
+        <form id="up-form" action="/de_complete" method="POST" enctype="multipart/form-data">
+            <label for="KeyInput" style="padding-right: 1em;">Key:- </label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Default" value="option1"
+                    onclick="ShowHideDiv()" checked>
+                <label class="form-check-label" for="DefaultKey" style="font-weight: normal;">Default Key</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Custom" value="option2"
+                    onclick="ShowHideDiv()">
+                <label class="form-check-label" for="CustomKey" style="font-weight: normal;">Custom Key</label>
+            </div><br>
+            <div class="form-group" id="dvtext" style="display: none;">
+                <input type="text" class="form-control" name="Key" aria-describedby="emailHelp" placeholder="Enter Key" autocomplete="off">
+                <small id="KeyHelp" class="form-text text-muted">Enter the key used in encryption(Key is
+                    case-sensitive).</small>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Upload the image:-</label>
+                <input type="file" class="form-control-file" name="file" accept="image/*" required>
+                <small id="KeyHelp" class="form-text text-muted">Make sure that the image is in .png format.</small>
+            </div><br>
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+<script>
+    function ShowHideDiv() {
+        var chkYes = document.getElementById("Custom");
+        var dvtext = document.getElementById("dvtext");
+        dvtext.style.display = chkYes.checked ? "block" : "none";
+    }
+</script>
+{% endblock %}
