@@ -48,7 +48,8 @@
         <small id="ImageInfo" class="form-text text-muted">Download the modified below using the download button. Send the 
             image to the recipient and remember to tell them the key if you have used a custom key.
         </small><br>
-        <a href="{{ url_for('static', filename = image_name) }}" download>
+        <img src="{{ url_for('static', filename = 'temp/' + image_name) }}" style="width: 100%;"><br><br>
+        <a href="{{ url_for('static', filename = 'temp/' + image_name) }}" download="encoded_img.png">
             <button type="button" class="btn btn-info">Download</button>
         </a>
         {% endif %}
