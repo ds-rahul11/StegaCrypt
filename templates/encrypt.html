@@ -6,22 +6,27 @@
     body {
         color: white;
     }
+
     .jumbotron {
         color: black;
     }
-    .jumbotron h1{
+
+    .jumbotron h1 {
         text-align: center;
         font-family: 'PT Serif', serif;
     }
+
+    .btn-primary {
+        margin-right: 30px;
+    }
+
     .btn {
         width: 180px;
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, 0);
         font-size: 20px;
-        border-radius: 8px;
+        border-radius: 5px;
     }
-    .jumbotron label{
+
+    .jumbotron label {
         font-size: 17px;
         font-weight: bold;
     }
@@ -30,38 +35,46 @@
 
 {% block body %}
 
-<div class="jumbotron" >
+<div class="jumbotron">
     <div class="col-sm-8 mx-auto">
         <h1 class="display-4">Encryption</h1><br>
         <form id="up-form" action="/en_complete" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="KeyInput" style="padding-right: 1em;">Key:- </label>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Default" value="option1"
-                    onclick="ShowHideDiv()" checked>
-                <label class="form-check-label" for="DefaultKey" style="font-weight: normal;">Default Key</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Custom" value="option2"
-                    onclick="ShowHideDiv()">
-                <label class="form-check-label" for="CustomKey" style="font-weight: normal;">Custom Key</label>
-            </div><br>
-            <div class="form-group" id="dvtext" style="display: none;">
-                <input type="text" class="form-control" name="Key" aria-describedby="emailHelp" placeholder="Enter Key" autocomplete="off">
-                <small id="KeyHelp" class="form-text text-muted">Enter personal key for encryption(<b>Caution:</b> Key is
-                    case-sensitive and needs to be entered in decryption phase).</small>
-            </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Default" value="option1"
+                        onclick="ShowHideDiv()" checked>
+                    <label class="form-check-label" for="DefaultKey" style="font-weight: normal;">Default Key</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Custom" value="option2"
+                        onclick="ShowHideDiv()">
+                    <label class="form-check-label" for="CustomKey" style="font-weight: normal;">Custom Key</label>
+                </div><br>
+                <div class="form-group" id="dvtext" style="display: none;">
+                    <input type="text" class="form-control" name="Key" aria-describedby="emailHelp"
+                        placeholder="Enter Key" autocomplete="off">
+                    <small id="KeyHelp" class="form-text text-muted">Enter personal key for encryption(<b>Caution:</b>
+                        Key is case-sensitive and needs to be entered in decryption phase).</small>
+                </div>
             </div>
             <div class="form-group">
                 <label for="message">Enter the message:-</label>
-                <textarea class="form-control" name="content" rows="3" autocomplete="off" required></textarea>
+                <textarea class="form-control" id="text1" name="content" rows="5" autocomplete="off"
+                    required></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Upload the image:-</label>
-                <input type="file" class="form-control-file" name="file" accept="image/*" required>
-                <small id="emailHelp" class="form-text text-muted">Image in which data needs to be encoded</small>                
-            </div><br>
-            <input class="btn btn-primary" type="submit" value="Submit">
+                <input type="file" class="form-control-file" id="fileUpload" name="file" accept="image/*"
+                    onchange="return Upload()" required>
+                <small id="emailHelp" class="form-text text-muted">Image in which data needs to be encoded.</small><br>
+            </div>
+            <div class="alert alert-danger" role="alert" id="alert" style="text-align: center; display: none;">
+                Text is too lengthy to be encoded. Please choose a higher resolution image.
+            </div>
+            <div style="text-align: center;">
+                <input class="btn btn-primary" type="submit" value="Submit">
+            </div>
         </form>
     </div>
 </div>
@@ -70,6 +83,28 @@
         var chkYes = document.getElementById("Custom");
         var dvtext = document.getElementById("dvtext");
         dvtext.style.display = chkYes.checked ? "block" : "none";
+    }
+    function Upload() {
+        var fileUpload = document.getElementById("fileUpload");
+        var st = document.getElementById("text1").value.length;
+        var reader = new FileReader();
+        reader.readAsDataURL(fileUpload.files[0]);
+        reader.onload = function (e) {
+            var image = new Image();
+            image.src = e.target.result;
+
+            image.onload = function () {
+                var height = this.height;
+                var width = this.width;
+                var alert = document.getElementById("alert");
+                if ((height * width / 3) < st) {
+                    alert.style.display = "block";
+                }
+                else {
+                    alert.style.display = "none";
+                }
+            };
+        }
     }
 </script>
 {% endblock %}
